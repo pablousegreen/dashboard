@@ -1,5 +1,8 @@
 package mx.open.dashboard.ds;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,25 +11,37 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TranslationMessagesDS {
-
+	
+	@JsonProperty("idTranslationMessage")
 	private Integer idTranslationMessage;
 	
+	@JsonProperty("idUser")
 	private Integer idUser;
 	
+	@JsonProperty("id")
 	private String id;
-
+	
+	@JsonProperty("message")
 	private String message;
 	
-	private String translations;
+	@JsonProperty("translations")
+	private JsonNode translationsJsonNode;
+	
+	@JsonProperty("translationsDTO")
+	private Translations translationsDTO;
+	
+	public TranslationMessagesDS() {
 
-	public TranslationMessagesDS(int idTranslationMessage, int idUser, String id, String message, String translations) {
+	}
+
+	public TranslationMessagesDS(int idTranslationMessage, int idUser, String id, String message, JsonNode translationsJsonNode) {
 		this.idTranslationMessage = idTranslationMessage;
 		this.idUser = idUser;
 		this.id = id;
 		this.message = message;
-		this.translations = translations;
+		this.translationsJsonNode = translationsJsonNode;
 	}
-	
+
 	public Integer getIdTranslationMessage() {
 		return idTranslationMessage;
 	}
@@ -59,12 +74,21 @@ public class TranslationMessagesDS {
 		this.message = message;
 	}
 
-	public String getTranslations() {
-		return translations;
+	public JsonNode getTranslationsJsonNode() {
+		return translationsJsonNode;
 	}
 
-	public void setTranslations(String translations) {
-		this.translations = translations;
+	public void setTranslationsJsonNode(JsonNode translationsJsonNode) {
+		this.translationsJsonNode = translationsJsonNode;
+	}
+	
+	public Translations getTranslationsDTO() {
+		return translationsDTO;
+	}
+
+
+	public void setTranslationsDTO(Translations translationsDTO) {
+		this.translationsDTO = translationsDTO;
 	}
 
 }
